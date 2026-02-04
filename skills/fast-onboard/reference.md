@@ -97,9 +97,7 @@ Returns `null` if not a Git repository.
 
 All values are `null` if `fd` is unavailable.
 
-## Cache Management
-
-### Cache Location
+## Cache Location
 
 ```
 .claude/.onboard-cache.json
@@ -107,30 +105,9 @@ All values are `null` if `fd` is unavailable.
 
 **Recommendation**: Add `.claude/` to `.gitignore` to avoid committing cache files.
 
-### Cache Behavior
-
-| Scenario | Action |
-|----------|--------|
-| Cache exists and fresh | Return cached JSON |
-| Cache expired (>3600s) | Regenerate and update cache |
-| `FAST_ONBOARD_FORCE=1` | Always regenerate |
-| Cache missing | Generate and create cache |
-
-### Clearing Cache
-
+To clear cache, simply delete the file:
 ```bash
-# Method 1: Delete cache file
 rm .claude/.onboard-cache.json
-
-# Method 2: Force regeneration
-FAST_ONBOARD_FORCE=1 bash .claude/skills/fast-onboard/scripts/cached_collect.sh
-```
-
-### Custom TTL
-
-```bash
-# Set cache TTL to 30 minutes (1800 seconds)
-FAST_ONBOARD_CACHE_SECONDS=1800 bash .claude/skills/fast-onboard/scripts/cached_collect.sh
 ```
 
 ## Complete JSON Example
@@ -200,10 +177,8 @@ FAST_ONBOARD_CACHE_SECONDS=1800 bash .claude/skills/fast-onboard/scripts/cached_
 
 ## Search Depth Constants
 
-The collection script uses these search depths (configurable in script):
-
-| Constant | Value | Purpose |
-|----------|-------|---------|
+| Search Type | Depth | Purpose |
+|-------------|-------|---------|
 | Dependency files | `-d 3` | Deps rarely nested deeper than 3 levels |
 | Documentation | `-d 2` | Docs typically at root or one level deep |
 | Infrastructure | `-d 3` | Config files near root |
@@ -212,9 +187,6 @@ The collection script uses these search depths (configurable in script):
 
 ## Excluded Directories
 
-The following directories are excluded from all searches:
-
 ```
-node_modules, dist, build, target, .git, vendor, venv,
-__pycache__, .next, coverage, .claude
+node_modules, dist, build, target, .git, vendor, venv, __pycache__, .next, coverage, .claude
 ```
