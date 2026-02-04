@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "claude-dev-toolkit",
-      "source": ".",
+      "source": "./",
       "description": "Full toolkit: 7 skills + 12 agents for Claude Code development",
       "version": "1.0.0",
       "keywords": [
