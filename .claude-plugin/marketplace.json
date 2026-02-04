@@ -1,0 +1,26 @@
+{
+  "name": "claude-dev-toolkit",
+  "owner": {
+    "name": "thirdlf03"
+  },
+  "metadata": {
+    "description": "Claude Code development toolkit with repository analysis, session management, code inspection, and review capabilities",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "claude-dev-toolkit",
+      "source": ".",
+      "description": "Full toolkit: 7 skills + 12 agents for Claude Code development",
+      "version": "1.0.0",
+      "keywords": [
+        "claude-code",
+        "repository-analysis",
+        "session-management",
+        "code-review",
+        "inspector"
+      ],
+      "category": "development"
+    }
+  ]
+}

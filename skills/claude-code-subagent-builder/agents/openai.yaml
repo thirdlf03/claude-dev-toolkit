@@ -1,0 +1,4 @@
+interface:
+  display_name: "Claude Code Subagent Builder"
+  short_description: "Create and review Claude Code subagents"
+  default_prompt: "Design a Claude Code subagent. Ask for goal, scope, tools, permissions, and example tasks. Draft the subagent file, then review tools/permissions and suggest tests."

@@ -1,0 +1,14 @@
+{
+  "name": "claude-dev-toolkit",
+  "description": "Claude Code development toolkit with repository analysis, session management, code inspection, and review capabilities",
+  "version": "1.0.0",
+  "author": "thirdlf03",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "repository-analysis",
+    "session-management",
+    "code-review",
+    "inspector"
+  ]
+}

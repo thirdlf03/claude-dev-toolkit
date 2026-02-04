@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude Inspector Output",
+  "description": "Output schema for claude-inspector skill",
+  "type": "object",
+  "properties": {
+    "inspection_summary": {
+      "type": "object",
+      "properties": {
+        "project_info": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "description": "nodejs, python, go, rust, etc." },
+            "framework": { "type": "string", "description": "nextjs, django, etc." },
+            "has_git": { "type": "boolean" },
+            "has_ci": { "type": "boolean" }
+          }
+        },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "total_findings": { "type": "integer" },
+        "by_priority": {
+          "type": "object",
+          "properties": {
+            "Critical": { "type": "integer" },
+            "High": { "type": "integer" },
+            "Medium": { "type": "integer" },
+            "Low": { "type": "integer" }
+          }
+        },
+        "by_category": {
+          "type": "object",
+          "properties": {
+            "Settings": { "type": "integer" },
+            "Hooks": { "type": "integer" },
+            "Memory": { "type": "integer" },
+            "MCP": { "type": "integer" },
+            "Rules": { "type": "integer" },
+            "Classification": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": { "type": "string", "enum": ["Critical", "High", "Medium", "Low"] },
+          "category": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "location": { "type": "string" },
+          "recommendation": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string" },
+              "example": { "type": "object" },
+              "steps": { "type": "array", "items": { "type": "string" } },
+              "rationale": { "type": "string" },
+              "documentation": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "required": ["priority", "category", "title", "description"]
+      }
+    },
+    "recommendations_by_category": {
+      "type": "object",
+      "description": "Findings grouped by category"
+    },
+    "quick_wins": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": { "type": "string" },
+          "category": { "type": "string" },
+          "title": { "type": "string" },
+          "estimated_time": { "type": "string" },
+          "impact": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["inspection_summary", "findings"]
+}
